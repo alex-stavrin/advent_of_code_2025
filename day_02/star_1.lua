@@ -1,4 +1,4 @@
-local input_file = "example.txt"
+local input_file = "input.txt"
 
 local file = io.open(input_file, "r")
 
@@ -30,20 +30,11 @@ for key, value in pairs(ranges) do
 
         local i_string = tostring(i)
 
-        local sub_string_offset = 0
-        while sub_string_offset < #i_string - 1 do
+        local sub_string_1 = string.sub(i_string, 1, math.floor(#i_string / 2))
+        local sub_string_2 = string.sub(i_string, math.floor(#i_string / 2) + 1, #i_string)
 
-            for j = 1, #i_string, sub_string_offset + 1 do
-
-                local sub_string_1 = string.sub(i_string, j, j + sub_string_offset)
-                local sub_string_2 = string.sub(i_string, j + sub_string_offset + 1, #i_string)
-
-                if(sub_string_1 == sub_string_2 and #sub_string_1 == #i_string / 2) then
-                    invalid_sum = invalid_sum + i
-                end
-            end
-
-            sub_string_offset = sub_string_offset + 1
+        if(sub_string_1 == sub_string_2 and #sub_string_1 == #i_string / 2) then
+            invalid_sum = invalid_sum + i
         end
     end
 end
